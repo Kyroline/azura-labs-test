@@ -1,4 +1,5 @@
-import { filterByCategories, filterBySearch } from "./book.aggregation.js";
+import { Types } from "mongoose";
+import { filterByCategories, filterByDate, filterBySearch, paginate, populate, sort } from "./book.aggregation.js";
 import { Book } from "./schemas/book.schema.js";
 
 export class BookRepository {
@@ -8,43 +9,55 @@ export class BookRepository {
 
     async findAll(filters) {
 
+        let filter = []
+
         if (filters?.category)
-            return this.bookModel.aggregate([
-                ...filterByCategories(filters?.category)
-            ]).exec()
+            filter.push(...filterByCategories(filters?.category))
 
         if (filters?.q)
-            return this.bookModel.aggregate([
-                ...filterBySearch(filters?.q)
-            ]).exec()
+            filter.push(...filterBySearch(filters?.q))
 
-        if (filters?.startDate || filters?.endDate)
-            return this.bookModel.aggregate([
-            ])
+        if (filters?.start)
+            filter.push(...filterByDate(new Date(filters?.start), null))
 
-        return this.bookModel.find({}).exec()
+        if (filters?.end)
+            filter.push(...filterByDate(null, new Date(filters?.end)))
+
+        return this.bookModel.aggregate([
+            ...filter,
+            ...populate(),
+            ...paginate(undefined, 15)
+        ]).exec()
     }
 
     async findById(id) {
-        return this.bookModel.findOne({ _id: id }).exec()
+        return this.bookModel.aggregate([
+            { $match: { _id: new Types.ObjectId(id) } },
+            ...populate()
+        ]).exec().then(res => res[0])
     }
 
-    async store(title, author, publication_date, publisher, num_pages, categories) {
+    async store(title, author, publication_date, publisher, num_pages, categories, cover) {
         return this.bookModel.create([{
             title,
             author,
             publication_date,
             publisher,
             num_pages,
-            categories
+            categories,
+            cover
         }]).then(res => res[0])
     }
 
-    async update(id, updateQuery) {
-        return this.bookModel.updateOne({ _id: id }, updateQuery).exec()
+    async update(id, updateQuery, session) {
+        return this.bookModel.findOneAndUpdate({ _id: id }, updateQuery, { session, returnOriginal: true }).exec()
     }
 
-    async delete(id) {
-        return this.bookModel.deleteOne({ _id: id }).exec()
+    async delete(id, session) {
+        return this.bookModel.findOneAndDelete({ _id: id }, { session }).exec()
+    }
+
+    async deleteMany(filter, session) {
+        return this.bookModel.deleteMany(filter, { session }).exec()
     }
 }

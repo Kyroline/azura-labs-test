@@ -9,8 +9,8 @@ export class BookController {
     }
 
     async findAll(req, res, next) {
-        const data = await this.bookService.findAll()
-        return res.json({ data })
+        const data = await this.bookService.findAll(req.query)
+        return res.json({ data: data, meta: { last: data.slice(-2, -1)[0]?._id, limit: 15 } })
     }
 
     async find(req, res, next) {
@@ -43,6 +43,7 @@ export class BookController {
             await this.bookService.update(req.params.id, requestBody)
             return res.sendStatus(204)
         } catch (error) {
+            console.log(error)
             next(error)
         }
     }
@@ -50,7 +51,7 @@ export class BookController {
     async delete(req, res, next) {
         try {
             await this.bookService.delete(req.params.id)
-            
+
             return res.sendStatus(204)
         } catch (error) {
             next(error)

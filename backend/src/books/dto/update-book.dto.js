@@ -1,13 +1,12 @@
 import Joi from "joi"
+import { BadRequestError } from "../../common/utils/apiError.js"
 
 export class UpdateBookDto {
     constructor() {
         this.schema = Joi.object({
-            title: Joi.string()
-                .alphanum(),
+            title: Joi.string(),
 
-            author: Joi.string()
-                .required(),
+            author: Joi.string(),
 
             publication_date: Joi.date(),
 
@@ -16,7 +15,9 @@ export class UpdateBookDto {
             num_pages: Joi.number()
                 .integer(),
 
-            categories: Joi.array()
+            categories: Joi.array(),
+
+            cover: Joi.string()
         })
     }
 

@@ -5,7 +5,6 @@ export class CreateBookDto {
     constructor() {
         this.schema = Joi.object({
             title: Joi.string()
-                .alphanum()
                 .required(),
 
             author: Joi.string()
@@ -22,7 +21,9 @@ export class CreateBookDto {
                 .required(),
 
             categories: Joi.array()
-                .required()
+                .required(),
+
+            cover: Joi.string()
         })
     }
 

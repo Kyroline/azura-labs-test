@@ -1,15 +1,18 @@
+import { Types } from "mongoose"
+
 export const filterByCategories = (searchedCategory) => [
     {
         $lookup: {
             from: 'bookcategories',
-            let: { categories: '$categories' },
+            let: { categories: '$categories', category: [new Types.ObjectId(searchedCategory)] },
             pipeline: [
                 {
                     $match: {
                         $expr: {
                             $and: [
                                 { $in: ['$_id', '$$categories'] },
-                                { $regexMatch: { input: 'title', regex: searchedCategory, $options: "i" } }
+                                { $in: ['$_id', '$$category'] }
+                                // { $regexMatch: { input: 'title', regex: searchedCategory, options: "i" } }
                             ]
                         }
                     }
@@ -42,13 +45,46 @@ export const filterBySearch = (searchQuery) => [
     }
 ]
 
-export const filterByDate = (start, end) => [
+export const filterByDate = (start, end) => {
+    const match = {};
+
+    if (start)
+        match['publication_date'] = { ...match['publication_date'], $gte: start };
+
+    if (end)
+        match['publication_date'] = { ...match['publication_date'], $lte: end };
+
+    return [
+        {
+            $match: match
+        }
+    ]
+}
+
+export const sort = (field, direction) => [
     {
-        $match: {
-            publication_date: {
-                $gte: start,
-                $lte: end
-            }
+        $sort: {
+            [field]: direction
+        }
+    }
+]
+
+export const paginate = (lastId, limit) => {
+    let pipeline = []
+    if (lastId)
+        pipeline.push({ $match: { _id: { $gt: new Types.ObjectId(lastId) } } })
+
+    pipeline.push({ $limit: limit })
+    return pipeline
+}
+
+export const populate = () => [
+    {
+        $lookup: {
+            from: 'bookcategories',
+            localField: 'categories',
+            foreignField: '_id',
+            as: 'categories'
         }
     }
 ]
