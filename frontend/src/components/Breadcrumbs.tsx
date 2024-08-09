@@ -1,0 +1,30 @@
+import React from "react"
+import { IoChevronForward } from "react-icons/io5"
+import { Link } from "react-router-dom"
+
+type BreadcrumbsProps = {
+    nodes: NodeObject[]
+}
+
+type NodeObject = { title: string, link: string }
+
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ nodes }) => {
+    return (
+        <div className="p-2 flex flex-row items-center">
+            {nodes.map((node, index, { length }) => {
+                if (length - 1 === index)
+                    return <h1 className="text-primary font-semibold">{node.title}</h1>
+                else {
+                    return (
+                        <>
+                            <Link to={node.link} className="text-tertiary">{node.title}</Link>
+                            <IoChevronForward className="text-tertiary mx-2" />
+                        </>
+                    )
+                }
+            })}
+        </div>
+    )
+}
+
+export default Breadcrumbs

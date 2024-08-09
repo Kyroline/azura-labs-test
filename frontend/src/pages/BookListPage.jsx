@@ -3,6 +3,7 @@ import InputBox from "../components/form/InputBox"
 import BookGrid from "../components/book/BookGrid"
 import useBreakpoint from "../hooks/useBreakpoint"
 import Button from "../components/form/Button"
+import SelectSearch from "../components/form/SelectSearch"
 
 const bookData = [
     {
@@ -20,6 +21,7 @@ const bookData = [
         image: '/uploads/the_antagonist.jpg'
     }
 ]
+const data = ['Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep']
 
 const BookListPage = () => {
     const [stick, setStick] = useState(0)
@@ -54,144 +56,44 @@ const BookListPage = () => {
                 {md ?
                     <div ref={video} className="w-80 grow shrink-0 sm:mr-2 relative">
                         <div className={` h-[calc(100vh-160px)] no-scrollbar overflow-y-auto flex flex-col p-8 w-80 rounded-md border text-primary border-secondary ${stick == 1 ? 'fixed top-[144px]' : stick == 2 ? 'absolute bottom-0' : ''}`}>
-
                             <h1 className="text-2xl font-bold">FILTER</h1>
                             <div className="w-full">
-                                <h1>Category</h1>
-                                <InputBox hideOnClick={true} placeholder='Search books here' />
-                                <div className="w-full max-h-48 overflow-y-auto">
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                </div>
+                                <SelectSearch label="Category"
+                                    data={data}
+                                    selectItem={(item, index) => (
+                                        <label htmlFor="hs-radio-on-right" className="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
+                                            <span className="text-sm text-gray-500 dark:text-neutral-400">{item}</span>
+                                            {/* <input type="radio" name="hs-radio-on-right" className="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" /> */}
+                                        </label>
+                                    )} />
                             </div>
                             <div className="w-full">
-                                <h1>Author</h1>
-                                <InputBox hideOnClick={true} placeholder='Search books here' />
-                                <div className="w-full max-h-48 overflow-y-auto">
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                </div>
+                                <SelectSearch label="Author"
+                                    data={data}
+                                    selectItem={(item, index) => (
+                                        <label htmlFor="hs-radio-on-right" className="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
+                                            <span className="text-sm text-gray-500 dark:text-neutral-400">{item}</span>
+                                            {/* <input type="radio" name="hs-radio-on-right" className="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" /> */}
+                                        </label>
+                                    )} />
                             </div>
                             <div className="w-full">
-                                <h1>Publisher</h1>
-                                <InputBox hideOnClick={true} placeholder='Search books here' />
-                                <div className="w-full max-h-48 overflow-y-auto">
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
-                                    <label for="hs-radio-on-right" class="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                                        <span class="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                                        <input type="radio" name="hs-radio-on-right" class="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                                    </label>
+                                <SelectSearch label="Publisher"
+                                    data={data}
+                                    selectItem={(item, index) => (
+                                        <label htmlFor="hs-radio-on-right" className="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
+                                            <span className="text-sm text-gray-500 dark:text-neutral-400">{item}</span>
+                                            {/* <input type="radio" name="hs-radio-on-right" className="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" /> */}
+                                        </label>
+                                    )} />
+                            </div>
+                            <div className="w-full">
+                                <div className="mb-1 grow flex flex-col">
+                                    <label className='mb-1' htmlFor="">Publication Date</label>
+                                    <div className="flex flex-col items-center">
+                                        <InputBox className='w-full mb-1' type="date" />
+                                        <InputBox className='w-full mb-1' type="date" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

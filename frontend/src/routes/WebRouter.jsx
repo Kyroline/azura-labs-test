@@ -3,6 +3,10 @@ import UserLayout from "../layouts/UserLayout";
 import AdminLayout from "../layouts/AdminLayout";
 import BookListPage from "../pages/BookListPage";
 import BookDetailPage from "../pages/BookDetailPage";
+import AdminBookListPage from "../pages/admin/AdminBookListPage";
+import AdminCreateBookPage from "../pages/admin/AdminCreateBookPage";
+import AdminCategoryListPage from "../pages/admin/AdminCategoryListPage";
+import AdminEditBookPage from "../pages/admin/AdminEditBookPage";
 
 const WebRouter = createBrowserRouter([
     {
@@ -22,7 +26,28 @@ const WebRouter = createBrowserRouter([
     {
         path: 'admin',
         element: <AdminLayout />,
-        children: []
+        children: [
+            {
+                path: 'books',
+                element: <AdminBookListPage />
+            },
+            {
+                path: 'books/new',
+                element: <AdminCreateBookPage />
+            },
+            {
+                path: 'books/:id',
+                element: <AdminEditBookPage />
+            },
+            {
+                path: 'categories',
+                element: <AdminCategoryListPage />
+            },
+            {
+                path: 'categories/new',
+                element: <AdminCreateBookPage />
+            }
+        ]
     }
 ])
 

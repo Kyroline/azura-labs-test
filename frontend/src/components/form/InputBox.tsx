@@ -2,9 +2,10 @@ import React, { ChangeEvent, useState } from 'react'
 
 type InputBoxProps = {
     className?: string,
+    label?: string
     autoFocus?: boolean,
     type?: string,
-    value: string,
+    value: string
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
     placeholder?: string,
     readOnly?: boolean,
@@ -13,7 +14,7 @@ type InputBoxProps = {
     hideOnClick?: boolean
 }
 
-const InputBox: React.FC<InputBoxProps> = ({ className = null, autoFocus = false, type = 'text', value, onChange, placeholder = null, readOnly = false, required = false, limit = null, hideOnClick = true }) => {
+const InputBox: React.FC<InputBoxProps> = ({ className = null, label = undefined, autoFocus = false, type = 'text', value, onChange, placeholder = null, readOnly = false, required = false, limit = null, hideOnClick = true }) => {
     const [focus, setFocus] = useState(false)
 
     const onValue = (e) => {
@@ -29,13 +30,15 @@ const InputBox: React.FC<InputBoxProps> = ({ className = null, autoFocus = false
     }//top-4
     return (
         <>
+            {label ? <label className='mb-2 ml-2 text-primary'>{label} {required ? <span className='text-red-600'>*</span> : null}</label> : null}
             <div className={'relative p-2.5 h-fit bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md flex items-center ' + className}>
-                <label className={`absolute pointer-events-none left-5 font-light focus transition-all ${focus || value != '' ? !hideOnClick ? '-translate-y-3 text-xs' : 'opacity-0' : 'text-base'}`}>{placeholder}{required ? <span className='text-red-600'>*</span> : null}</label>
+                <label className={`absolute pointer-events-none left-5 font-light focus transition-all ${focus || value != '' ? !hideOnClick ? '-translate-y-3 text-xs' : 'opacity-0' : 'text-base'}`}>{placeholder}{required && !label ? <span className='text-red-600'>*</span> : null}</label>
                 <input
                     autoFocus={autoFocus ?? false}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
                     readOnly={readOnly}
+                    required={required}
                     value={value}
                     onChange={onValue}
                     type={type ?? 'text'}

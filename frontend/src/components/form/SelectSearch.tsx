@@ -1,27 +1,32 @@
 import React, { ChangeEvent, useState } from 'react'
 import InputBox from './InputBox'
+import { IoChevronDown } from "react-icons/io5";
 
 type SelectSearchProps = {
-    data: object[],
-    selectItem: (item: object, index: number) => React.ReactNode,
+    data: any[],
+    label?: string,
+    selectItem: (item: any, index: number) => React.ReactNode,
     searchValue: string,
     onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void,
 }
 
 
-const SelectSearch: React.FC<SelectSearchProps> = ({ data, selectItem, searchValue, onSearchChange }) => {
+const SelectSearch: React.FC<SelectSearchProps> = ({ data, label, selectItem, searchValue, onSearchChange }) => {
+    const [query, setQuery] = useState<string>('')
+    const filteredData = data.filter((item) => item.toLowerCase().search(query.toLocaleLowerCase()) != -1)
     const [active, setActive] = useState(false)
-    
     return (
         <div className="w-full">
-            <h1>Category</h1>
-            <InputBox value={searchValue} onChange={onSearchChange} hideOnClick={true} placeholder='Search books here' />
-            <div className="w-full max-h-48 overflow-y-auto">
-                {data.map((item, index) => selectItem(item, index))}
-                {/* <label htmlFor="hs-radio-on-right" className="flex p-3 w-full bg-white text-sm focus:border-blue-500 focus:ring-blue-500 ">
-                    <span className="text-sm text-gray-500 dark:text-neutral-400">Default radio</span>
-                    <input type="radio" name="hs-radio-on-right" className="shrink-0 ms-auto mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-on-right" />
-                </label> */}
+            {label ? <label className='mb-1' htmlFor="">{label}</label> : null}
+            <div className='w-full p-2.5 border border-primary rounded-md cursor-pointer relative flex items-center' onClick={() => { console.log('aa'); setActive(prev => !prev) }}>
+                - - -
+                <IoChevronDown className={`${active ? 'rotate-180' : ''} absolute right-2 top-0 flex h-full items-center transition-all duration-100`} />
+            </div>
+            <div className={`w-full transition-all p-2 ${active ? 'max-h-96 visible' : 'max-h-0 invisible pointer-events-none'}`}>
+                <InputBox value={query} onChange={e => setQuery(e.target.value)} hideOnClick={true} placeholder='Search books here' />
+                <div className={`w-full max-h-48  overflow-y-auto`}>
+                    {filteredData.map((item, index) => selectItem(item, index))}
+                </div>
             </div>
         </div>
     )
