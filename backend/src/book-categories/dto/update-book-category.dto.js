@@ -1,11 +1,10 @@
 import Joi from "joi"
 import { BadRequestError } from "../../common/utils/apiError.js"
 
-export class CreateBookCategoryDto {
+export class UpdateBookCategoryDto {
     constructor() {
         this.schema = Joi.object({
             title: Joi.string()
-                .required()
         })
     }
 

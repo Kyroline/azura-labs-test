@@ -5,32 +5,27 @@ import moment from 'moment'
 import { IoPencil, IoTrash } from "react-icons/io5"
 import useModal from '../../hooks/useModal'
 import ConfirmBookDeletion from "../modals/ConfirmBookDeletion"
+import EditBookCategory from "../modals/EditBookCategory"
 
 const columns = [
-    {
-        title: 'Cover'
-    },
     {
         title: 'Title'
     },
     {
-        title: 'Author'
+        title: 'Book Count(s)'
     },
     {
-        title: 'Categories'
+        title: 'Creation Date'
     },
     {
-        title: 'Publisher'
-    },
-    {
-        title: 'Publication Date'
+        title: 'Last Modified'
     },
     {
         title: ''
     }
 ]
 
-const BookTable = ({ data }) => {
+const CategoryTable = ({ data }) => {
     const { showModal, hideModal, modal } = useModal()
     const navigate = useNavigate()
     return (
@@ -43,29 +38,25 @@ const BookTable = ({ data }) => {
             <tbody>
                 {data?.map((item, index) => (
                     <tr className="bg-white border-b">
-                        <td className="px-4 py-3">
-                            <img className="max-w-20" src={`${import.meta.env.VITE_API_ENDPOINT}/uploads/${item.cover}`} alt="" />
-                        </td>
                         <td className="px-4 py-3">{item.title}</td>
-                        <td className="px-4 py-3">{item.author}</td>
-                        <td className="px-4 py-3 break-words">{item.categories.map((category) => `${category.title},`)}</td>
-                        <td className="px-4 py-3">{item.publisher}</td>
-                        <td className="px-4 py-3">{moment(item.publication_date).format('DD MMMM YYYY')}</td>
+                        <td className="px-4 py-3">{item.book_count}</td>
+                        <td className="px-4 py-3">{moment(item.created_at).format('DD MMMM YYYY')}</td>
+                        <td className="px-4 py-3">{moment(item.updated_at).format('DD MMMM YYYY')}</td>
                         <td className="px-4 py-3">
-                            <div className="flex flex-col items-center justify-center">
+                            <div className="flex flex-row items-center justify-center">
                                 <Button
                                     title={<IoPencil />}
-                                    onClick={() => navigate(`/admin/books/${item._id}`)}
+                                    onClick={() => showModal(<EditBookCategory categoryId={item._id} />)}
                                     size="md"
                                     style="custom"
-                                    className="rounded-md mb-2 bg-yellow-400 hover:bg-yellow-600"
+                                    className="rounded-md mr-1 bg-yellow-400 hover:bg-yellow-600"
                                 />
                                 <Button
                                     title={<IoTrash />}
-                                    onClick={() => {showModal(<ConfirmBookDeletion bookId={item._id} />)}}
+                                    onClick={() => { showModal(<ConfirmBookDeletion />) }}
                                     size="md"
                                     style="custom"
-                                    className="rounded-md mb-2 bg-red-600 hover:bg-red-800"
+                                    className="rounded-md ml-1 bg-red-600 hover:bg-red-800"
                                 />
                             </div>
                         </td>
@@ -76,4 +67,4 @@ const BookTable = ({ data }) => {
     )
 }
 
-export default BookTable
+export default CategoryTable

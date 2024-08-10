@@ -5,4 +5,4 @@ export const bookCategorySchema = new Schema({
     book_count: { type: Number, default: 0 }
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
 
-export const Book = model('BookCategory', bookCategorySchema)
+export const BookCategory = model('BookCategory', bookCategorySchema)

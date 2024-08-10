@@ -8,7 +8,7 @@ const AutoCorrectInput = ({ data, onSelectClick, className = null, label = undef
     const ref = useRef(null)
 
     useClickOutsideHide(ref, () => setActive(false))
-    data = data.filter((item) => (item._id.toLowerCase().search(value.toLowerCase()) != -1))
+    data = data?.filter((item) => (item._id.toLowerCase().search(value.toLowerCase()) != -1))
     return (
         <div className="flex flex-col">
             <InputBox

@@ -42,10 +42,6 @@ const WebRouter = createBrowserRouter([
             {
                 path: 'categories',
                 element: <AdminCategoryListPage />
-            },
-            {
-                path: 'categories/new',
-                element: <AdminCreateBookPage />
             }
         ]
     }
