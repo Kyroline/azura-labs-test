@@ -27,11 +27,14 @@ export class BookService {
         try {
             session.startTransaction()
 
-            let filename = Date.now() + path.extname(createBookDto.cover)
-            const tmpPath = path.resolve(__dirname, '../../public', 'uploads', 'tmp', createBookDto.cover)
-            const newPath = path.resolve(__dirname, '../../public', 'uploads', filename)
+            let filename = undefined
+            if (createBookDto.cover) {
+                filename = Date.now() + path.extname(createBookDto.cover)
+                const tmpPath = path.resolve(__dirname, '../../public', 'uploads', 'tmp', createBookDto.cover)
+                const newPath = path.resolve(__dirname, '../../public', 'uploads', filename)
 
-            await rename(tmpPath, newPath)
+                await rename(tmpPath, newPath)
+            }
 
             await this.bookRepository.store(
                 createBookDto.title,
@@ -84,7 +87,7 @@ export class BookService {
             await session.commitTransaction()
         } catch (error) {
             await session.abortTransaction()
-            next(error)
+            throw error
         } finally {
             session.endSession()
         }
@@ -105,6 +108,14 @@ export class BookService {
             next(error)
         } finally {
             session.endSession()
+        }
+    }
+
+    async groupAndCountField(field, searchQuery) {
+        try {
+            return this.bookRepository.groupAndCount(field, searchQuery)
+        } catch (error) {
+            throw error
         }
     }
 }

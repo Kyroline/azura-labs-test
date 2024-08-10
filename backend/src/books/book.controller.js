@@ -57,4 +57,13 @@ export class BookController {
             next(error)
         }
     }
+
+    async groupAndCountField(req, res, next) {
+        try {
+            const result = await this.bookService.groupAndCountField(`$${req.query.field}`, req.query.q)
+            return res.json({ data: result })
+        } catch (error) {
+            next(error)
+        }
+    }
 }

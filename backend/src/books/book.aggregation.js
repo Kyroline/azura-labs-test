@@ -88,3 +88,19 @@ export const populate = () => [
         }
     }
 ]
+
+export const groupAndCountField = (field, searchQuery) => [
+    {
+        $group: {
+            _id: field,
+            count: {
+                $count: {}
+            }
+        }
+    },
+    {
+        $match: {
+            _id: { $regex: searchQuery ?? '', $options: "i" }
+        }
+    }
+]

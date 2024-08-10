@@ -11,10 +11,12 @@ type InputBoxProps = {
     readOnly?: boolean,
     required?: boolean,
     limit?: number,
-    hideOnClick?: boolean
+    hideOnClick?: boolean,
+    onFocus: () => void,
+    onBlur: () => void
 }
 
-const InputBox: React.FC<InputBoxProps> = ({ className = null, label = undefined, autoFocus = false, type = 'text', value, onChange, placeholder = null, readOnly = false, required = false, limit = null, hideOnClick = true }) => {
+const InputBox: React.FC<InputBoxProps> = ({ onFocus = () => { }, onBlur = () => { }, className = null, label = undefined, autoFocus = false, type = 'text', value, onChange, placeholder = null, readOnly = false, required = false, limit = null, hideOnClick = true }) => {
     const [focus, setFocus] = useState(false)
 
     const onValue = (e) => {
@@ -35,8 +37,8 @@ const InputBox: React.FC<InputBoxProps> = ({ className = null, label = undefined
                 <label className={`absolute pointer-events-none left-5 font-light focus transition-all ${focus || value != '' ? !hideOnClick ? '-translate-y-3 text-xs' : 'opacity-0' : 'text-base'}`}>{placeholder}{required && !label ? <span className='text-red-600'>*</span> : null}</label>
                 <input
                     autoFocus={autoFocus ?? false}
-                    onFocus={() => setFocus(true)}
-                    onBlur={() => setFocus(false)}
+                    onFocus={() => { setFocus(true); onFocus() }}
+                    onBlur={() => { setFocus(false); onBlur() }}
                     readOnly={readOnly}
                     required={required}
                     value={value}

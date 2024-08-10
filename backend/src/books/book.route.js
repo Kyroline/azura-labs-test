@@ -6,6 +6,7 @@ export class BookRoute {
     }
 
     bindRoutes(router) {
+        router.get('/books/fields', (req, res, next) => this.bookController.groupAndCountField(req, res, next))
         router.get('/books', (req, res, next) => this.bookController.findAll(req, res, next))
         router.get('/books/:id', (req, res, next) => this.bookController.find(req, res, next))
         router.post('/books', (req, res, next) => this.bookController.create(req, res, next))

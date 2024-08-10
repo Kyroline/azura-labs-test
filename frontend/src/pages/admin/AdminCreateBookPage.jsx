@@ -9,6 +9,7 @@ import ImageUpload from "../../components/form/ImageUpload";
 import SelectSearchPopup from "../../components/form/SelectSearchPopup";
 import useSWR from 'swr'
 import { BsXLg } from "react-icons/bs";
+import AutoCorrectInput from "../../components/form/AutoCorrectInput";
 
 const AdminCreateBookPage = () => {
     const [title, setTitle] = useState('')
@@ -23,6 +24,8 @@ const AdminCreateBookPage = () => {
     const navigate = useNavigate()
 
     const { data, isLoading, error } = useSWR('/categories', url => axiosInstance.get(url).then(res => res.data))
+    const { data: authorData } = useSWR('/books/fields?field=author', url => axiosInstance.get(url).then(res => res.data))
+    const { data: publisherData } = useSWR('/books/fields?field=publisher', url => axiosInstance.get(url).then(res => res.data))
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -75,21 +78,25 @@ const AdminCreateBookPage = () => {
                                     required={true}
                                     label="Title"
                                     value={title}
-                                    onChange={e => setTitle(e.target.value)}
+                                    onChange={e => setTitle(e.target ? e.target.value : e)}
                                     placeholder="Title" />
-                                <InputBox
+                                <AutoCorrectInput
+                                    data={authorData?.data}
                                     className="mb-2"
                                     required={true}
                                     label="Author's Name"
                                     value={author}
                                     onChange={e => setAuthor(e.target.value)}
+                                    onSelectClick={value => setAuthor(value)}
                                     placeholder="Author's Name" />
-                                <InputBox
+                                <AutoCorrectInput
+                                    data={publisherData?.data}
                                     className="mb-2"
                                     required={true}
                                     label="Publisher"
                                     value={publisher}
                                     onChange={e => setPublisher(e.target.value)}
+                                    onSelectClick={value => setPublisher(value)}
                                     placeholder="Publisher" />
                                 <div className="flex flex-row mb-2">
                                     <div className="w-full mr-2">
@@ -141,7 +148,7 @@ const AdminCreateBookPage = () => {
                                     <h1 className="font-medium text-xl text-primary">Book Cover</h1>
                                 </div>
                                 <ImageUpload onUploadEnd={() => setLoading(false)} onUploadStart={() => setLoading(true)}
-                                    onUploadSuccess={(image) => {console.log(image); setCover(image)}} aspectClass='aspect-[5/5]' image={cover ? `/uploads/tmp/${cover}` : null} />
+                                    onUploadSuccess={(image) => { console.log(image); setCover(image) }} aspectClass='aspect-[5/5]' image={cover ? `/uploads/tmp/${cover}` : null} />
                             </div>
                         </div>
                         <div className="p-2 border-t h-fit">

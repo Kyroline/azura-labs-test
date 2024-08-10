@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { filterByCategories, filterByDate, filterBySearch, paginate, populate, sort } from "./book.aggregation.js";
+import { filterByCategories, filterByDate, filterBySearch, groupAndCountField, paginate, populate, sort } from "./book.aggregation.js";
 import { Book } from "./schemas/book.schema.js";
 
 export class BookRepository {
@@ -59,5 +59,11 @@ export class BookRepository {
 
     async deleteMany(filter, session) {
         return this.bookModel.deleteMany(filter, { session }).exec()
+    }
+
+    async groupAndCount(field, filter) {
+        return this.bookModel.aggregate([
+            ...groupAndCountField(field, filter)
+        ]).exec()
     }
 }

@@ -17,7 +17,7 @@ export class UpdateBookDto {
 
             categories: Joi.array(),
 
-            cover: Joi.string()
+            cover: Joi.optional()
         })
     }
 

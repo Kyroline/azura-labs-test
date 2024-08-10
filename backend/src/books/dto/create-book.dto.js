@@ -23,7 +23,7 @@ export class CreateBookDto {
             categories: Joi.array()
                 .required(),
 
-            cover: Joi.string()
+            cover: Joi.optional()
         })
     }
 
