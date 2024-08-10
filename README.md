@@ -42,3 +42,9 @@ Create a website which allows an end user
  - Filter List Books by text that will search for Title, Author and Publisher (accessible by the search box in '/books' or '/admin/books')
  - Filter List Books by Publication Date (accessible by the twin date input in '/books' or '/admin/books')
 ![Screenshot of book list (admin)](https://drive.usercontent.google.com/download?id=1jecep_mmFepOkOY7juU1Na5UdVnADXRK)
+
+## Notable Features
+ - Field autocorrect for author and publisher when creating a new book
+![Screenshot of a autocorrect field (admin)](https://drive.usercontent.google.com/download?id=1Kzt40ggUqDQ6i7bYD8Gxckt4RMqhFAe9)
+ - Multiple category can be inserted to a book using built in multiple select search
+![Screenshot of a multiple select search (admin)](https://drive.usercontent.google.com/download?id=1EQGu-IVdNW-2CuvZm5u5P_WjWzSY5_67)
