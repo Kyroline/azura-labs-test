@@ -42,9 +42,9 @@ const BookTableFilter = ({ onQueryEnter }) => {
                     <SelectSearchPopup
                         label="Category"
                         selected={selected ? [selected?._id] : []}
-                        value={category ?
+                        value={selected ?
                             <div className="bg-secondary text-white p-0.5 rounded-full flex items-center justify-between text-xs px-2 mr-2 cursor-default shadow-2xl">
-                                <span>{category.title}</span>
+                                <span>{selected.title}</span>
                                 <span className="ml-2 cursor-pointer" onClick={(e) => { e.stopPropagation(); setCategory(null); clearParam('category') }}><BsXLg /></span>
                             </div>
                             : '- - -'}

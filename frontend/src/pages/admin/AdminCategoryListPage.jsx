@@ -15,6 +15,8 @@ const AdminCategoryListPage = () => {
     const { showModal } = useModal()
     const [query, setQuery] = useSearchParams()
     const { data, isLoading, error } = useSWR(`/categories`, url => axiosInstance.get(url).then(res => res.data))
+    
+    
     return (
         <>
             <div className="flex flex-row justify-between">

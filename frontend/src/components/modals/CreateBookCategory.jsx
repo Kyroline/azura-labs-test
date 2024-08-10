@@ -31,7 +31,7 @@ const CreateBookCategory = ({ bookId }) => {
             <form onSubmit={confirmCreate}>
                 <InputBox required={true} className='mb-2' label="Category Name" placeholder="Enter Category Name" value={title} onChange={e => setTitle(e.target.value)} />
                 <div className="flex flex-row w-full justify-end items-center mt-2">
-                    <Button style="tertiary" className="mr-1" size="md" title='Cancel' />
+                    <Button onClick={() => hideModal()} style="tertiary" className="mr-1" size="md" title='Cancel' />
                     <Button style="primary" className="ml-1" size="md" title={
                         <div className="flex flex-row items-center h-full">
                             {loading ?

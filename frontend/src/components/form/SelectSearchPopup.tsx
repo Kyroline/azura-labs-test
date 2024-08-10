@@ -20,9 +20,8 @@ type SelectSearchProps = {
 const SelectSearchPopup: React.FC<SelectSearchProps> = ({ value, selected = [], required = false, labelClass, onSelect, data, label, selectItem }) => {
     const [searchValue, setSearchValue] = useState('')
 
-    if (selected.length != 0) {
+    if (selected.length != 0)
         data = data.filter((item) => !selected.includes(item._id))
-    }
     if (data && data.length != 0)
         data = data.filter((item) => (item.title.toLowerCase().search(searchValue.toLowerCase()) != -1))
     const [active, setActive] = useState(false)

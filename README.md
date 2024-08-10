@@ -25,11 +25,20 @@
 
 ## TASK
 Create a website which allows an end user
-
+https://drive.usercontent.google.com/download?id=1wMgCWAsqlw0nXcMhCldTbwSznMdXUmBT
  - Create/Update/Delete Book Categories (accessible in '/categories')
+![Screenshot of category creation](https://drive.usercontent.google.com/download?id=1Hjho6G1k2_e1t8YBB8uUUlG680nyXV26)
+![Screenshot of category update](https://drive.usercontent.google.com/download?id=1G-96_1O_viS74NDMllNAbImlPCU7TGw9)
+![Screenshot of category deletion](https://drive.usercontent.google.com/download?id=1nl_7vsc-ccaHXg1YCxeJJohV9TdmF3fr)
  - Create/Update/Delete Books (accessible in '/books/new', '/books/:id', and '/books')
- - View List Book Categories (accessible in '/categories')
+![Screenshot of book creation](https://drive.usercontent.google.com/download?id=1jZtKbW5hdXEEhdCNBePoVVTYDWyTXQiM)
+![Screenshot of book update](https://drive.usercontent.google.com/download?id=1zjRK30N8MggKoAz65Hv-rsL9sjMQvKnp)
+![Screenshot of book deletion](https://drive.usercontent.google.com/download?id=13yxgTAzCSegmI4NKQMg4A1Eq0CVLLYZ-)
+ - View List Book Categories (accessible in '/admin/categories')
+![Screenshot of category list](https://drive.usercontent.google.com/download?id=1SH_aciMyUPKHXzIVzoyf2HrV9dIkgjmV)
  - View List Books (accessible in '/books')
+![Screenshot of book list](https://drive.usercontent.google.com/download?id=1VE9zODP_pPyG6JOyPzfQCp5HSjHICLeY)
  - Filter List Books by Categories (accessible by the select box in '/books')
  - Filter List Books by text that will search for Title, Author and Publisher (accessible by the search box in '/books')
  - Filter List Books by Publication Date (accessible by the twin date input in '/books')
+![Screenshot of book list (admin)](https://drive.usercontent.google.com/download?id=1jecep_mmFepOkOY7juU1Na5UdVnADXRK)

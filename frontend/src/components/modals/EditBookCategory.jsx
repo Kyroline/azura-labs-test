@@ -42,11 +42,11 @@ const EditBookCategory = ({ categoryId }) => {
     return (
         <div className="flex flex-col bg-white p-2 rounded-xl z-50 md:w-2/5 w-4/5 relative py-4">
             <BsXLg className='absolute right-4 top-4 w-4 h-4 cursor-pointer' onClick={() => hideModal()} />
-            <h1 className="text-center font-bold mb-4">Create New Category</h1>
+            <h1 className="text-center font-bold mb-4">Edit Category</h1>
             <form onSubmit={confirmCreate}>
                 <InputBox required={true} className='mb-2' label="Category Name" placeholder="Enter Category Name" value={title} onChange={e => setTitle(e.target.value)} />
                 <div className="flex flex-row w-full justify-end items-center mt-2">
-                    <Button style="tertiary" className="mr-1" size="md" title='Cancel' />
+                    <Button onClick={() => hideModal()} style="tertiary" className="mr-1" size="md" title='Cancel' />
                     <Button style="primary" className="ml-1" size="md" title={
                         <div className="flex flex-row items-center h-full">
                             {loading ?

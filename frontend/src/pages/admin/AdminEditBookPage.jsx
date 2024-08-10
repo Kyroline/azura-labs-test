@@ -78,7 +78,7 @@ const AdminEditBookPage = () => {
                                 link: '/admin/books'
                             },
                             {
-                                title: 'New Book'
+                                title: 'Edit Book'
                             }
                         ]} />
                     </div>

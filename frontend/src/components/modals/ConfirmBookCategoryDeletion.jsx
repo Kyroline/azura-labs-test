@@ -25,7 +25,7 @@ const ConfirmBookCategoryDeletion = ({ categoryId }) => {
             <BsXLg className='absolute right-4 top-4 w-4 h-4 cursor-pointer' onClick={() => hideModal()} />
             <h1 className="text-center font-bold mb-8">WARNING</h1>
             <p>Are you sure you want to delete this data?</p>
-            <p className='text-xs text-red-600 font-bold italic'>This action cannot be REVERTED!</p>
+            <p className='text-xs text-red-600 font-bold italic'>WARNING: Deleting a category also deletes all books associated with that category. This action cannot be REVERTED!</p>
             <hr class="h-px bg-gray-200 border-0 mt-2" />
             <div className="flex flex-row w-full justify-end items-center mt-2">
                 <Button onClick={() => hideModal()} className="mr-1" style="tertiary" size="md" title='Cancel' />
