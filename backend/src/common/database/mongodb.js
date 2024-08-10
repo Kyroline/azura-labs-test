@@ -1,10 +1,11 @@
 import mongoose from "mongoose"
+import 'dotenv/config'
 
 export async function connectDB() {
     try {
         if (!mongoose.connection.readyState) {
             await mongoose.connect(
-                process.env.MONGODB_CONNECTION_STRING || 'mongodb+srv://kyrolineadmin:3fD-hLu%23g7Q_jaq@development.omdds9q.mongodb.net/azura-labs-dev?retryWrites=true&w=majority&appName=development'
+                process.env.MONGODB_CONNECTION_STRING
             )
             return console.log('Mongodb Connected')
         }
