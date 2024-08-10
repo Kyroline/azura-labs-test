@@ -62,7 +62,7 @@ const BookTable = ({ data }) => {
                                 />
                                 <Button
                                     title={<IoTrash />}
-                                    onClick={() => {showModal(<ConfirmBookDeletion bookId={item._id} />)}}
+                                    onClick={() => {showModal(<ConfirmBookDeletion key={Date.now()} bookId={item._id} />)}}
                                     size="md"
                                     style="custom"
                                     className="rounded-md mb-2 bg-red-600 hover:bg-red-800"

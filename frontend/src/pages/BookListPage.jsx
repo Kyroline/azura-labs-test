@@ -4,30 +4,17 @@ import BookGrid from "../components/book/BookGrid"
 import useBreakpoint from "../hooks/useBreakpoint"
 import Button from "../components/form/Button"
 import SelectSearch from "../components/form/SelectSearch"
+import useSWR from "swr"
+import axiosInstance from "../lib/axiosInstance"
 
-const bookData = [
-    {
-        _id: 'aaaa',
-        title: 'Celestia',
-        author: 'D\'Cherries',
-        publisher: 'Gramedia Pustaka Utama',
-        image: '/uploads/celestia.jpg'
-    },
-    {
-        _id: 'aaaa',
-        title: 'The Antagonist',
-        author: 'D\'Cherries',
-        publisher: 'Gramedia Pustaka Utama',
-        image: '/uploads/the_antagonist.jpg'
-    }
-]
 const data = ['Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep', 'Mep']
 
 const BookListPage = () => {
     const [stick, setStick] = useState(0)
     const video = useRef()
     const { sm, md } = useBreakpoint()
-
+    const { data: bookData, isLoading, error } = useSWR(`/books`, url => axiosInstance.get(url).then(res => res.data))
+    
     const handleMobileVideoScroll = () => {
         if (video.current) {
             const rect = video.current.getBoundingClientRect()
@@ -109,10 +96,7 @@ const BookListPage = () => {
                         : null}
                     {/* <p className="md:ml-2 font-medium text-primary mb-4">FICTION BOOKS</p> */}
                     <div className="grid gap-2 grid-cols-2 xl:grid-cols-3">
-                        {bookData.map((book, index) => <BookGrid key={index} data={book} />)}
-                        {bookData.map((book, index) => <BookGrid key={index} data={book} />)}
-                        {bookData.map((book, index) => <BookGrid key={index} data={book} />)}
-                        {bookData.map((book, index) => <BookGrid key={index} data={book} />)}
+                        {bookData?.data.map((book, index) => <BookGrid key={index} data={book} />)}
                     </div>
                 </div>
             </div>

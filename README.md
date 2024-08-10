@@ -15,6 +15,7 @@
 ## ABOUT
  - Access book list in '/books' (landing page designer are credited below)
  - Access administator panel in '/admin/...' 
+ - Anything that's not credited is made by me.
 
 ## Credits
 

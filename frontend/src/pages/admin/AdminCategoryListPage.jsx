@@ -27,7 +27,7 @@ const AdminCategoryListPage = () => {
                         title: 'Categories'
                     }
                 ]} />
-                <Button onClick={() => showModal(<CreateBookCategory />)} size="md" className="rounded-md" title={
+                <Button onClick={() => showModal(<CreateBookCategory key={Date.now()} />)} size="md" className="rounded-md" title={
                     <div className="flex flex-row items-center">
                         <IoIosAdd className="mr-1 text-xl" />
                         New Category

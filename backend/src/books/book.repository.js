@@ -26,7 +26,7 @@ export class BookRepository {
         return this.bookModel.aggregate([
             ...filter,
             ...populate(),
-            ...paginate(undefined, 15)
+            // ...paginate(undefined, 15) //pagination not implemented
         ]).exec()
     }
 
