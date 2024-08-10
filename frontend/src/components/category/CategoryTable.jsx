@@ -48,19 +48,17 @@ const CategoryTable = ({ data }) => {
                         <td className="px-4 py-3">
                             <div className="flex flex-row items-center justify-center">
                                 <Button
-                                    title={<IoPencil />}
                                     onClick={() => showModal(<EditBookCategory key={Date.now()} categoryId={item._id} />)}
-                                    size="md"
-                                    style="custom"
+                                    buttonSize="md"
+                                    buttonStyle="custom"
                                     className="rounded-md mr-1 bg-yellow-400 hover:bg-yellow-600"
-                                />
+                                ><IoPencil /></Button>
                                 <Button
-                                    title={<IoTrash />}
                                     onClick={() => { showModal(<ConfirmBookCategoryDeletion key={Date.now()} categoryId={item._id} />) }}
-                                    size="md"
-                                    style="custom"
+                                    buttonSize="md"
+                                    buttonStyle="custom"
                                     className="rounded-md ml-1 bg-red-600 hover:bg-red-800"
-                                />
+                                ><IoTrash /></Button>
                             </div>
                         </td>
                     </tr>

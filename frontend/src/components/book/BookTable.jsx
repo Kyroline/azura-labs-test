@@ -54,19 +54,17 @@ const BookTable = ({ data }) => {
                         <td className="px-4 py-3">
                             <div className="flex flex-col items-center justify-center">
                                 <Button
-                                    title={<IoPencil />}
                                     onClick={() => navigate(`/admin/books/${item._id}`)}
-                                    size="md"
-                                    style="custom"
+                                    buttonSize="md"
+                                    buttonStyle="custom"
                                     className="rounded-md mb-2 bg-yellow-400 hover:bg-yellow-600"
-                                />
+                                ><IoPencil /></Button>
                                 <Button
-                                    title={<IoTrash />}
-                                    onClick={() => {showModal(<ConfirmBookDeletion key={Date.now()} bookId={item._id} />)}}
-                                    size="md"
-                                    style="custom"
+                                    onClick={() => { showModal(<ConfirmBookDeletion key={Date.now()} bookId={item._id} />) }}
+                                    buttonSize="md"
+                                    buttonStyle="custom"
                                     className="rounded-md mb-2 bg-red-600 hover:bg-red-800"
-                                />
+                                ><IoTrash /></Button>
                             </div>
                         </td>
                     </tr>

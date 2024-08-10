@@ -15,8 +15,8 @@ const AdminCategoryListPage = () => {
     const { showModal } = useModal()
     const [query, setQuery] = useSearchParams()
     const { data, isLoading, error } = useSWR(`/categories`, url => axiosInstance.get(url).then(res => res.data))
-    
-    
+
+
     return (
         <>
             <div className="flex flex-row justify-between">
@@ -29,12 +29,12 @@ const AdminCategoryListPage = () => {
                         title: 'Categories'
                     }
                 ]} />
-                <Button onClick={() => showModal(<CreateBookCategory key={Date.now()} />)} size="md" className="rounded-md" title={
+                <Button onClick={() => showModal(<CreateBookCategory key={Date.now()} />)} buttonSize="md" className="rounded-md">
                     <div className="flex flex-row items-center">
                         <IoIosAdd className="mr-1 text-xl" />
                         New Category
                     </div>
-                } />
+                </Button>
             </div>
             <div className="flex flex-col mt-2">
                 <div className="w-full overflow-x-auto">

@@ -1,31 +1,33 @@
 import React, { MouseEventHandler, ReactNode } from "react";
 
-type ButtonProps = {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     className: string,
-    title: string | ReactNode,
-    onClick: MouseEventHandler<HTMLButtonElement>,
     disabled?: boolean,
-    style?: keyof typeof buttonStyle,
-    size?: keyof typeof buttonSize
+    buttonStyle?: keyof typeof buttonStyleList,
+    buttonSize?: keyof typeof buttonSizeList
 }
 
-const buttonStyle = {
+const buttonStyleList = {
     primary: 'bg-primary hover:bg-primary-darker text-white',
     secondary: 'bg-secondary hover:bg-secondary-darker text-white',
     tertiary: 'bg-tertiary hover:bg-tertiary-darker text-primary',
     custom: ''
 };
 
-const buttonSize = {
+const buttonSizeList = {
     sm: 'p-1 text-sm',
     md: 'p-2 text-sm'
 }
 
-const Button: React.FC<ButtonProps> = ({ className, title, onClick, disabled, style, size }) => {
-    const buttonClass = `${className} ${style ? buttonStyle[style] : buttonStyle.primary} ${size ? buttonSize[size] : buttonSize.sm} ${disabled ? 'pointer-events-none' : ''}`;
+const Button: React.FC<ButtonProps> = ({ className, children, disabled, buttonStyle, buttonSize, ...props }) => {
+    const buttonClass = `${className} ${buttonStyle ? buttonStyleList[buttonStyle] : buttonStyleList.primary} ${buttonSize ? buttonSizeList[buttonSize] : buttonSizeList.sm} ${disabled ? 'pointer-events-none' : ''}`;
 
     return (
-        <button onClick={onClick} className={`${buttonClass} transition-colors font-medium cursor-pointer`}>{title}</button>
+        <button
+            className={`${buttonClass} transition-colors font-medium cursor-pointer`}
+            {...props}>
+            {children}
+        </button>
     )
 }
 

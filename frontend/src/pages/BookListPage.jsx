@@ -124,8 +124,8 @@ const BookListPage = () => {
                     <h1 className="text-center md:text-left md:ml-2 font-bold text-primary text-3xl mb-4">BOOK LISTS</h1>
                     {!md ?
                         <div className="grid grid-cols-2 gap-2 mb-2 h-10">
-                            <Button title='FILTER' style="tertiary" size="md" />
-                            <Button title='SORT' style="tertiary" size="md" />
+                            <Button buttonStyle="tertiary" buttonSize="md">FILTER</Button>
+                            <Button buttonStyle="tertiary" buttonSize="md">SORT</Button>
                         </div>
                         : null}
                     {/* <p className="md:ml-2 font-medium text-primary mb-4">FICTION BOOKS</p> */}

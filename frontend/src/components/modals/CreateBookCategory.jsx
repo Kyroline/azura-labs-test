@@ -31,8 +31,8 @@ const CreateBookCategory = ({ bookId }) => {
             <form onSubmit={confirmCreate}>
                 <InputBox required={true} className='mb-2' label="Category Name" placeholder="Enter Category Name" value={title} onChange={e => setTitle(e.target.value)} />
                 <div className="flex flex-row w-full justify-end items-center mt-2">
-                    <Button onClick={() => hideModal()} style="tertiary" className="mr-1" size="md" title='Cancel' />
-                    <Button style="primary" className="ml-1" size="md" title={
+                    <Button onClick={() => hideModal()} buttonStyle="tertiary" className="mr-1" buttonSize="md">Cancel</Button>
+                    <Button buttonStyle="primary" className="ml-1" buttonSize="md">
                         <div className="flex flex-row items-center h-full">
                             {loading ?
                                 <svg aria-hidden="true" class="mr-1 w-5 h-5 text-gray-200 animate-spin fill-tertiary" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@ const CreateBookCategory = ({ bookId }) => {
                             }
                             <span>Create</span>
                         </div>
-                    } />
+                    </Button>
                 </div>
             </form>
         </div>

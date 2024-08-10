@@ -23,12 +23,12 @@ const AdminBookListPage = () => {
                         title: 'Books'
                     }
                 ]} />
-                <Button onClick={() => navigate('/admin/books/new')} size="md" className="rounded-md" title={
+                <Button onClick={() => navigate('/admin/books/new')} buttonSize="md" className="rounded-md">
                     <div className="flex flex-row items-center">
-                        <IoIosAdd className="mr-1 text-xl"/>
+                        <IoIosAdd className="mr-1 text-xl" />
                         New Book
                     </div>
-                } />
+                </Button>
             </div>
             <div className="flex flex-col mt-2">
                 <BookTableFilter />

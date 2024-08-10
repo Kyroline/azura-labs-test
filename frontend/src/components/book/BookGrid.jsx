@@ -17,7 +17,7 @@ const BookGrid = ({ data }) => {
                         <p>{data?.categories.map((item) => item.title + ', ')}</p>
                     </div>
                 </div>
-                <Button onClick={() => navigate(`/books/${data._id}`)} title='View Detail' style="primary" />
+                <Button onClick={() => navigate(`/books/${data._id}`)} buttonStyle="primary">View Detail</Button>
             </div>
         </div>
     )
