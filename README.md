@@ -4,11 +4,13 @@
  - Run frontend application with
  ```
  cd frontend
+ npm i
  npm run dev
  ```
  - Run Backend application with
  ```
  cd frontend
+ npm i
  npm run start
  ```
 
